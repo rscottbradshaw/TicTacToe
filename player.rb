@@ -15,15 +15,19 @@ class Player
   end
 
   def take_turn
-    # print "X or O:"
-    # mark = get_user_input
     puts "|1|2|3|"
     puts "|4|5|6|"
     puts "|7|8|9|"
-    print "location:"
+    print "Please select a postion:"
     location = get_user_input.to_i - 1
-    mark_square(location)
+    if @board.claimed?(location)
+      puts "That space is claimed, pick another."
+      take_turn
+    else
+      mark_square(location)
+    end
   end
+
 
 
 
