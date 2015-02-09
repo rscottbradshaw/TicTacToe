@@ -32,30 +32,30 @@ class Board
   end
 
   def check_row
-    @squares[0..2].all? { |str| str  == "X" }
-    @squares[0..2].all? { |str| str  == "O" }
-    @squares[3..5].all? { |str| str  == "X" }
-    @squares[3..5].all? { |str| str  == "O" }
-    @squares[6..8].all? { |str| str  == "X" }
+    @squares[0..2].all? { |str| str  == "X" } ||
+    @squares[0..2].all? { |str| str  == "O" } ||
+    @squares[3..5].all? { |str| str  == "X" } ||
+    @squares[3..5].all? { |str| str  == "O" } ||
+    @squares[6..8].all? { |str| str  == "X" } ||
     @squares[6..8].all? { |str| str  == "O" }
   end
 
   def check_columns
-    @squares[0, 3, 6].all? { |str| str  == "X" }
-    @squares[0, 3, 6].all? { |str| str  == "O" }
-    @squares[1, 4, 7].all? { |str| str  == "X" }
-    @squares[1, 4, 7].all? { |str| str  == "O" }
-    @squares[2, 5, 8].all? { |str| str  == "X" }
+    @squares[0, 3, 6].all? { |str| str  == "X" } ||
+    @squares[0, 3, 6].all? { |str| str  == "O" } ||
+    @squares[1, 4, 7].all? { |str| str  == "X" } ||
+    @squares[1, 4, 7].all? { |str| str  == "O" } ||
+    @squares[2, 5, 8].all? { |str| str  == "X" } ||
     @squares[2, 5, 8].all? { |str| str  == "O" }
   end
 
   def check_left_diagonal
-    @squares[0, 4, 8].all? { |str| str  == "X" }
+    @squares[0, 4, 8].all? { |str| str  == "X" } ||
     @squares[0, 4, 8].all? { |str| str  == "O" }
   end
 
   def check_right_diagonal
-    @squares[2, 4, 6].all? { |str| str  == "X" }
+    @squares[2, 4, 6].all? { |str| str  == "X" } ||
     @squares[2, 4, 6].all? { |str| str  == "O" }
   end
 
