@@ -17,13 +17,13 @@ class Game
   def game_play
     while game_over? == false do
       display
-      if game_winner #not sure about this either
-        puts "#{@player} wins the game!"
-      elsif
       @player1.take_turn
       display
-      elsif game_over?
-        puts "Thanks for playing, you suck!!"
+      if game_winner
+        puts "#{@player} wins the game!"
+      elsif
+        @board.full?
+        puts "Sorry but we have a draw!  Play again?"
       else
         @player2.take_turn
       end
@@ -31,14 +31,14 @@ class Game
   end
 
   def game_over?
-    if @board.full?
+    if game_winner || @board.full?
       return true
     end
     false
   end
 
   def game_winner
-    @check_row || @check_column || @check_left_diagonal || @check_right_diagonal
+    @board.check_row || @board.check_columns  || @board.check_left_diagonal || @board.check_right_diagonal
   end
 
 end
