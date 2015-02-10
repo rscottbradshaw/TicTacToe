@@ -38,7 +38,7 @@ class Game
   end
 
   def game_winner
-    @board.check_row || @board.check_columns  || @board.check_left_diagonal || @board.check_right_diagonal
+    @board.check_row || @board.check_column || @board.check_left_diagonal || @board.check_right_diagonal
   end
 
 end
