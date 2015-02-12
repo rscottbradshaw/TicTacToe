@@ -16,18 +16,21 @@ class Game
   end
 
   def game_play
+    puts " "
+    print "****** Welcome to Tic Tac Toe. Think you can beat the computer? Give it your best shot! ******"
+    puts " "
     while game_over? == false do
       display
       @player.take_turn
       display
-      if game_winner
-        puts "#{@player} wins the game!"
-      elsif
-        @board.full?
-        puts "Sorry but we have a draw!  Play again?"
-      else
-        @computer.take_turn
-      end
+      @computer.take_turn
+    end
+    if game_winner
+      display
+      puts "#{game_winner} wins the game!  Play again?"
+    elsif
+      @board.full?
+      puts "Sorry but we have a draw!  Play again?"
     end
   end
 
@@ -39,7 +42,9 @@ class Game
   end
 
   def game_winner
-    @board.check_row || @board.check_column || @board.check_left_diagonal || @board.check_right_diagonal
+    return "Computer" if @board.check_win(@board.computer_moves)
+    return "Player" if @board.check_win(@board.player_moves)
+    false
   end
 
 end

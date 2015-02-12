@@ -1,6 +1,11 @@
 class Board
+  attr_accessor :player_moves
+  attr_accessor :computer_moves
+
   def initialize
     @squares = [" "," "," "," "," "," "," "," "," "]
+    @player_moves = []
+    @computer_moves = []
   end
 
   def display
@@ -62,6 +67,15 @@ class Board
   def check_right_diagonal
     @squares.values_at(2, 4, 6).all? { |str| str  == "X" } ||
     @squares.values_at(2, 4, 6).all? { |str| str  == "O" }
+  end
+
+  def check_win(values)
+    win_conditions = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
+    win_conditions.each do |wc|
+      a = wc - values
+      return values if a.empty?
+    end
+    false
   end
 
 end
