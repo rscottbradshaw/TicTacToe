@@ -1,11 +1,12 @@
 require './board'
 require './player'
+require './computer'
 
 class Game
   def initialize
     @board = Board.new
-    @player1 = Player.new(@board, "X")
-    @player2 = Player.new(@board, "O")
+    @player = Player.new(@board)
+    @computer = Computer.new(@board)
 
     game_play
   end
@@ -17,7 +18,7 @@ class Game
   def game_play
     while game_over? == false do
       display
-      @player1.take_turn
+      @player.take_turn
       display
       if game_winner
         puts "#{@player} wins the game!"
@@ -25,7 +26,7 @@ class Game
         @board.full?
         puts "Sorry but we have a draw!  Play again?"
       else
-        @player2.take_turn
+        @computer.take_turn
       end
     end
   end

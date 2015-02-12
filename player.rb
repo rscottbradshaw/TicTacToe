@@ -1,13 +1,12 @@
 require './board.rb'
 
 class Player
-  def initialize(board, mark)
+  def initialize(board)
     @board = board
-    @mark = mark
   end
 
   def mark_square(i)
-    @board.set_square(i, @mark)
+    @board.set_square(i, "X")
   end
 
   def get_user_input

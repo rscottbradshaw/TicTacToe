@@ -31,6 +31,11 @@ class Board
     end
   end
 
+  def available_squares
+    available = @squares.each_with_index.select { |square, loc| square == " " }
+    available.map { |sq| sq[1] }
+  end
+
   def check_row
     @squares[0..2].all? { |str| str  == "X" } ||
     @squares[0..2].all? { |str| str  == "O" } ||
