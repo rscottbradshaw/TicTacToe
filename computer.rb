@@ -15,6 +15,8 @@ class Computer
     available_squares = @board.available_squares
     player_moves = @board.player_moves
     computer_moves = @board.computer_moves
+    sides = [1, 3, 5, 7]
+    best_available = available_squares - sides
 
     player_win = near_win(player_moves, available_squares)
     computer_win = near_win(@board.computer_moves, available_squares)
@@ -22,13 +24,11 @@ class Computer
     return computer_win if computer_win
     return player_win if player_win
 
-    return go_for_win(computer_moves, available_squares) if computer_moves.length == 1
+    return go_for_win(computer_moves, available_squares, player_moves) if computer_moves.length == 1
 
     return 4 if available_squares.include?(4)
 
-    sides = [1, 3, 5, 7]
-    best_available = available_squares - sides
-    best_available.sample unless best_available.empty?
+    return best_available.sample unless best_available.empty?
     available_squares.sample
   end
 
@@ -42,10 +42,18 @@ class Computer
     false
   end
 
-  def go_for_win(moves, available)
-    less_available = available - [0]
+  def go_for_win(computer_moves, available, player_moves)
+    less_available = available
     less_available.each do |i|
-      return i if near_win(moves + [i], available)
+      winner = near_win(computer_moves + [i], available - [i])
+      return i if winner && !player_trap(player_moves + [winner], available - [i])
     end
+    false
+  end
+
+  def player_trap(player_moves, available)
+    first = near_win(player_moves, available)
+    true if first && near_win(player_moves, available - [first])
+    false
   end
 end

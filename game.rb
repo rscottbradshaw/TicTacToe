@@ -22,16 +22,11 @@ class Game
     while game_over? == false do
       display
       @player.take_turn
+      return end_message if game_over?
       display
       @computer.take_turn
     end
-    if game_winner
-      display
-      puts "#{game_winner} wins the game!  Play again?"
-    elsif
-      @board.full?
-      puts "Sorry but we have a draw!  Play again?"
-    end
+    end_message
   end
 
   def game_over?
@@ -39,6 +34,16 @@ class Game
       return true
     end
     false
+  end
+
+  def end_message
+    if game_winner
+      display
+      puts "#{game_winner} wins the game!  Play again?"
+    elsif
+      @board.full?
+      puts "Sorry but we have a draw!  Play again?"
+    end
   end
 
   def game_winner
