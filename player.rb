@@ -24,6 +24,7 @@ class Player
       take_turn
     else
       mark_square(location)
+      return @board.player_moves << (location + 9) if location < 0
       @board.player_moves << location
     end
   end
