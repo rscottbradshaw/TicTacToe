@@ -53,7 +53,7 @@ class Computer
 
   def player_trap(player_moves, available)
     first = near_win(player_moves, available)
-    true if first && near_win(player_moves, available - [first])
+    return true if first && near_win(player_moves, available - [first])
     false
   end
 end
