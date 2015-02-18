@@ -24,8 +24,9 @@ class Computer
     return computer_win if computer_win
     return player_win if player_win
 
-    return go_for_win(computer_moves, available_squares, player_moves) if computer_moves.length == 1
-
+    try_to_win = go_for_win(computer_moves, available_squares, player_moves)
+    return try_to_win if try_to_win
+    
     return 4 if available_squares.include?(4)
 
     return best_available.sample unless best_available.empty?
